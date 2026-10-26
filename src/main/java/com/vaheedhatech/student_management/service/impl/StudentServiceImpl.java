@@ -91,6 +91,9 @@ public class StudentServiceImpl implements StudentService {
         student.setCourse(studentDto.getCourse());
         student.setAdmissionDate(studentDto.getAdmissionDate());
         student.setPhone(studentDto.getPhone());
+        student.setEmail(studentDto.getEmail());
+        student.setAge(studentDto.getAge());
+        student.setAdmissionNo(studentDto.getAdmissionNo());
 
         Student updatedStudent=studentRepository.save(student);
 
@@ -101,6 +104,9 @@ public class StudentServiceImpl implements StudentService {
         response.setCourse(updatedStudent.getCourse());
         response.setAdmissionDate(updatedStudent.getAdmissionDate());
         response.setPhone(updatedStudent.getPhone());
+        response.setEmail(updatedStudent.getEmail());
+        response.setAge(updatedStudent.getAge());
+        response.setAdmissionNo(updatedStudent.getAdmissionNo());
 
         return response;
     }
