@@ -5,9 +5,10 @@ import com.vaheedhatech.student_management.service.LibraryClientService;
 import com.vaheedhatech.student_management.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
-
+@CrossOrigin(origins="http://localhost:5173")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -26,6 +27,14 @@ public class StudentController {
     public String addDetails(@RequestBody StudentDto studentDto) {
         return studentService.addStudent(studentDto);
     }
+    @PutMapping("/{id}")
+    public StudentDto updateStudent(
+            @PathVariable Long id,
+            @RequestBody StudentDto studentDto) {
+
+        return studentService.updateStudent(id, studentDto);
+    }
+
     @GetMapping
     public List<StudentDto> getAllStudents(){
         return studentService.getAllStudents();
@@ -34,12 +43,7 @@ public class StudentController {
     public StudentDto getStudentById(@PathVariable Long id){
         return studentService.getStudentById(id);
     }
-    @PutMapping("/{id}")
-    public StudentDto updateStudent(
-            @PathVariable Long id,
-            @RequestBody StudentDto studentDto){
-        return studentService.updateStudent(id,studentDto);
-    }
+
     @DeleteMapping("/{id}")
     public String deleteStudent(@PathVariable Long id){
         String result=libraryClientService.checkUnreturnedBooks(id);
